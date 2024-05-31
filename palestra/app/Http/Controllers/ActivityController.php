@@ -17,5 +17,27 @@ class ActivityController extends Controller
     {
         return view('activities.show', compact('activity'));
     }
+
+    public function create()
+    {
+        return view('activities.create');
+    }
+
+    public function store(Request $request)
+    {
+        // Validazione dei dati del form
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            // Altri campi necessari per l'attività
+        ]);
+
+        // Creazione di una nuova attività nel database
+        Activity::create($validatedData);
+
+        // Reindirizzamento alla pagina delle attività con un messaggio di successo
+        return redirect()->route('activities.index')->with('success', 'Activity added successfully!');
+    }
+
 }
 

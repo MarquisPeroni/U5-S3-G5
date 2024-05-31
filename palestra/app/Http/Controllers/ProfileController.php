@@ -12,15 +12,6 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile and bookings.
-     */
-    public function show(): View
-    {
-        $user = Auth::user();
-        return view('profile.show', compact('user'));
-    }
-
-    /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
@@ -67,4 +58,3 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 }
-
